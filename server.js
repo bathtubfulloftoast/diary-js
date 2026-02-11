@@ -1,9 +1,14 @@
 import express from 'express';
 import { handler as ssrHandler } from './dist/server/entry.mjs';
 
+import ylist from './functions/yearlist.js';
+
+
+
 const app = express();
-// Change this based on your astro.config.mjs, `base` option.
-// They should match. The default value is "/".
+
+app.get('/api/yearlist', ylist);
+
 const base = '/';
 app.use(base, express.static('dist/client/'));
 app.use(ssrHandler);
