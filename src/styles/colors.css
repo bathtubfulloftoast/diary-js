@@ -1,3 +1,10 @@
+/*
+ * @name catppuccin
+ * @author bathtubfulloftoast
+ * @description a port of catppuccin for Novas Diary
+ * @website https://github.com/catppuccin/catppuccin
+*/
+
 :root {
   --bg: #dce0e8;
   --bg0: #e6e9ef;
@@ -67,4 +74,3 @@
     --bright-yellow: #f1cd83;
   }
 }
-/*https://github.com/catppuccin/catppuccin*/
