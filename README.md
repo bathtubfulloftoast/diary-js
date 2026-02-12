@@ -12,9 +12,11 @@ version 3 of my diary software
 * [ ] Port in .env
 * [ ] add logging
 * [ ] more options for href linking (to files and shit)
-* [ ] cache re-built entries
+* [ ] cache re-built entries (but not ones from current date)
 * [ ] allow for cache clearing
 * [ ] allow image resizing?
 * [ ] rescale for mobile
 * [ ] finish share page
 * [ ] automatic code highlighting
+* [ ] better error handling for pages (get error: thing)
+* [ ] set error codes for api
