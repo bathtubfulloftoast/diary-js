@@ -23,6 +23,9 @@ width: 50%;
 
 spoiler {
 cursor:pointer;
+display:inline-block;
+background:var(--bg2);
+border-radius:1em;
 }
 
 spoiler.hidden {

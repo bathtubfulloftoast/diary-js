@@ -5,7 +5,8 @@ import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
+  publicDir: './branding',
   adapter: node({
-    mode: 'middleware'
+    mode: 'middleware',
   })
 });

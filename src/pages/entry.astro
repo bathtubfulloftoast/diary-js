@@ -28,8 +28,8 @@ const date = new Date(hash);
 
 document.title=date.toLocaleString('default', { dateStyle: 'long' });
 
-// const response = await fetch('/entry.html');
-const response = await fetch(`/api/entry?date=${hash}`);
+const response = await fetch('/entry.html');
+// const response = await fetch(`/api/entry?date=${hash}`);
 const data = await response.text();
 
 const tcont = document.getElementById("content");
