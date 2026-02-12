@@ -7,3 +7,9 @@ body {
 a {
     text-decoration:none;
 }
+
+hr {
+border: 2px solid var(--bg3);
+margin: -10px -10px 20px;
+margin-top:20px;
+}
