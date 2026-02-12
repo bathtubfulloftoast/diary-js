@@ -1,0 +1,9 @@
+body {
+    background:var(--bg);
+    text-align:center;
+    color:var(--fg)
+}
+
+a {
+    text-decoration:none;
+}

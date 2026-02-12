@@ -1,0 +1,39 @@
+.button {
+    display:inline-block;
+    margin:5px;
+    padding:5px;
+    font-size:20px;
+    border-radius:5px;
+    width:30px;
+    height:30px;
+}
+
+a:link, a:visited {
+color:var(--blue);
+transition: all .2s ease-in-out;
+}
+
+a:hover {
+color:var(--bright-blue);
+}
+
+.valid {
+background:var(--bg3);
+transition: all .2s ease-in-out;
+}
+
+.valid:hover {
+transform: scale(1.2);
+}
+
+.invalid {
+background:var(--bg1);
+color:var(--fg3);
+cursor:not-allowed;
+}
+
+#dates {
+    display:block;
+    width:40vw;
+    margin:auto;
+}

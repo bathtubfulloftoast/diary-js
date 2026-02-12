@@ -1,11 +1,32 @@
+---
+import 'dotenv/config';
+
+import '/src/styles/colors.css';
+import '/src/styles/font.css';
+import '/src/styles/global.css';
+import '/src/styles/entry.css';
+
+const name = process.env.TITLE;
+---
+put icons here
+<hr>
 <div id="content">
 
 </div>
+<hr>
+to top
+
+<br><br><br>
 
 <script>
 let hash = window.location.hash;
 hash = hash.substring(1);
 hash = decodeURI(hash);
+
+const date = new Date(hash);
+
+
+document.title=date.toLocaleString('default', { dateStyle: 'long' });
 
 // const response = await fetch('/entry.html');
 const response = await fetch(`/api/entry?date=${hash}`);
@@ -13,6 +34,20 @@ const data = await response.text();
 
 const tcont = document.getElementById("content");
 tcont.innerHTML = data;
+
+
+const spoilers = tcont.querySelectorAll("spoiler");
+
+spoilers.forEach(async (spoiler) => {
+spoiler.className="hidden";
+spoiler.addEventListener("click", function(event) {
+if(spoiler.className == "hidden" ) {
+spoiler.removeAttribute('class');
+} else {
+spoiler.className="hidden";
+}
+})
+});
 
 
 </script>
