@@ -29,7 +29,7 @@ try {
 
     res.status(200).send(replace);
 } catch (err) {
-    res.status(200).json({error:"couldnt read file"});
-    // res.status(200).json(err);
+    // res.status(200).json({error:"couldnt read file"});
+    res.status(200).json(err);
 }
 };
