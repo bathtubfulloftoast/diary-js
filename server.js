@@ -12,7 +12,7 @@ import shr from './functions/share.js';
 const app = express();
 
 app.get('/api/yearlist', ylist);
-app.get('/api/post', diarypost);
+app.get('/api/entry', diarypost);
 app.get('/api/file', file);
 app.get('/api/entries', entries);
 

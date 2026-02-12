@@ -1,0 +1,62 @@
+<div id="dates">
+
+</div>
+<script>
+let hash = window.location.hash;
+hash = hash.substring(1);
+hash = decodeURI(hash);
+
+if(/[^0-9]/g.test(hash)) {
+hash = 2022; // too lazy to get current date RN
+}
+
+// const response = await fetch('/entries.json');
+const response = await fetch(`/api/entries?year=${hash}`);
+const data = await response.json();
+
+const wrap = document.getElementById("dates");
+
+  function createCalendar(elem, year, month) {
+
+    let mon = month - 1; // months in JS are 0..11, not 1..12
+    let d = new Date(year, mon);
+
+    let table = `<h1>${month}</h1>`;
+
+
+    // <td> with actual dates
+    while (d.getMonth() == mon) {
+    const cday = d.getDate();
+    const cmonth = month;
+
+    if (data.indexOf(`${cmonth}-${cday}`) !== -1) {
+    table += `<a href="/entry#${hash}-${cmonth}-${cday}">` + cday + '</a> ';
+    } else {
+    table += '<b>' + cday + '</b> ';
+    }
+
+
+
+      d.setDate(d.getDate() + 1);
+    }
+
+    elem.innerHTML = table;
+  }
+
+  function getDay(date) { // get day number from 0 (monday) to 6 (sunday)
+    let day = date.getDay();
+    if (day == 0) day = 7; // make Sunday (0) the last day
+    return day - 1;
+  }
+
+for (let i = 1; i < 13; i++) {
+const poop = document.createElement("div");
+
+createCalendar(poop, hash, i);
+
+wrap.appendChild(poop);
+}
+
+// this is so far from my comfort zone thank you javascript.info
+// https://javascript.info/task/calendar-table
+</script>

@@ -1,0 +1,18 @@
+<div id="content">
+
+</div>
+
+<script>
+let hash = window.location.hash;
+hash = hash.substring(1);
+hash = decodeURI(hash);
+
+// const response = await fetch('/entry.html');
+const response = await fetch(`/api/entry?date=${hash}`);
+const data = await response.text();
+
+const tcont = document.getElementById("content");
+tcont.innerHTML = data;
+
+
+</script>

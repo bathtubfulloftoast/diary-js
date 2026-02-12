@@ -1,17 +1,26 @@
----
+<body>
 
----
+<div id="yearlist">
+</div>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+</body>
+<script>
+// const response = await fetch('/yearlist.json');
+const response = await fetch('/api/yearlist');
+const data = await response.json();
+
+const wrap = document.getElementById("yearlist");
+
+data.forEach(myFunction);
+
+function myFunction(item, index) {
+const text = document.createElement("h1");
+const link = document.createElement("a");
+link.innerHTML = item;
+link.href= "/entries#"+item;
+
+text.appendChild(link);
+wrap.appendChild(text);
+}
+
+</script>
