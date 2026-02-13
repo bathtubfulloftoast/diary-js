@@ -10,7 +10,7 @@ export default async function swag(req, res) {
     return res.status(400).json({error:"invalid year"});
     }
 
-    const files = await glob(`./entries/${reqyear}/**/entry.html`);
+    const files = await glob(`./entries/${reqyear}/*/*/entry.html`);
 
     if(files.length == 0) {
     return res.status(404).json({error:"no valid entries for given year"});
