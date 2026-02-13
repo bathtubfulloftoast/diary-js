@@ -48,3 +48,4 @@ any software will do (even a default nginx/apache2 file list) but i reccomend [c
 * [ ] proper password menu
 * [ ] check if linked file is directory
 * [ ] add access log
+* [ ] search menu
