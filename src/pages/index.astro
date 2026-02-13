@@ -20,6 +20,7 @@ const name = process.env.TITLE;
 
 </body>
 <script>
+document.addEventListener("DOMContentLoaded", async function() {
 // const response = await fetch('/yearlist.json');
 const response = await fetch('/api/yearlist');
 const data = await response.json();
@@ -38,5 +39,5 @@ link.href= "/entries#"+item;
 text.appendChild(link);
 wrap.appendChild(text);
 }
-
+});
 </script>

@@ -25,12 +25,15 @@ const ePATH = process.env.EDITORPATH;
 
 </div>
 <hr>
-to top
+<div id="bottomicons">
+<a id="totop" href="#"><i class="bi bi-arrow-up"></i></a>
+</div>
 
 <br><br><br>
 </body>
 
 <script>
+document.addEventListener("DOMContentLoaded", async function() {
 let hash = window.location.hash;
 hash = hash.substring(1);
 hash = decodeURI(hash);
@@ -43,6 +46,10 @@ document.title=date.toLocaleString('default', { dateStyle: 'long' });
 // const response = await fetch('/entry.html');
 const response = await fetch(`/api/entry?date=${hash}`);
 const data = await response.text();
+
+if(!response.ok) {
+return alert("couldnt grab entry");
+}
 
 const tcont = document.getElementById("content");
 tcont.innerHTML = data;
@@ -60,9 +67,11 @@ spoiler.className="hidden";
 }
 })
 });
+});
 </script>
 
 <script>
+document.addEventListener("DOMContentLoaded", async function() {
 let hash = window.location.hash;
 hash = hash.substring(1);
 hash = decodeURI(hash);
@@ -77,4 +86,11 @@ document.getElementById("goback").href="/entries#"+year;
 const edit = document.getElementById("edit");
 edit.href = edit.href + `${year}/${month}/${day}/`;
 
+
+document.getElementById("totop").addEventListener("click", function(event) {
+event.preventDefault();
+window.scrollTo(0, 0);
+})
+
+});
 </script>

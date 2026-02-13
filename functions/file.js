@@ -27,7 +27,7 @@ try {
 
     res.status(200).send(data);
 } catch (err) {
-    res.status(200).json({error:"couldnt read file"});
+    res.status(404).json({error:"couldnt read file"});
     // res.status(200).json(err);
 }
 };

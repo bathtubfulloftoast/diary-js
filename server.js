@@ -1,4 +1,5 @@
 import express from 'express';
+import 'dotenv/config';
 import { handler as ssrHandler } from './dist/server/entry.mjs';
 
 import ylist from './functions/yearlist.js';
@@ -8,6 +9,7 @@ import entries from './functions/entries.js';
 
 import shr from './functions/share.js';
 
+const port = process.env.PORT || 4321;
 
 const app = express();
 
@@ -22,4 +24,5 @@ const base = '/';
 app.use(base, express.static('dist/client/'));
 app.use(ssrHandler);
 
-app.listen(4321);
+app.listen(port);
+console.log(`started server at http://localhost:${port}`);
