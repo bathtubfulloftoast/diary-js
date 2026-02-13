@@ -1,4 +1,5 @@
 import fs from 'fs';
+import entryconvert from './entryconvert.js';
 
 export default async function swag(req, res) {
 const reqdate = req.query.date;
@@ -12,24 +13,12 @@ if (isNaN(date)) {
 return res.status(400).json({error:"invalid date"});
 }
 
-
-
 try {
     const data = fs.readFileSync(`./entries/${year}/${month}/${day}/entry.html`, 'utf8');
-
-    var replace = data.replace(/src\s*=\s*"([^"]+)"/g, function(match, srcValue) {
-        srcValue = srcValue.replace(/^(\.\/|\.\.\/)/g, "");
-
-        if(/(http|https):\/\//g.test(srcValue)) {
-        return  'src="' + srcValue + '"';
-        } else {
-        return 'src="' + `/api/file?date=${year}-${month}-${day}&file=` + srcValue + '"';
-        }
-    });
-
+    const replace = entryconvert(data,date);
     res.status(200).send(replace);
 } catch (err) {
-    res.status(404).json({error:"couldnt read file"});
-    // res.status(200).json(err);
+    // res.status(404).json({error:"couldnt read file"});
+    res.status(200).json(err);
 }
 };

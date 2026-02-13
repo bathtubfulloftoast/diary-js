@@ -58,3 +58,10 @@ color:var(--red);
 }
 
 
+#content a:link, #content a:visited{
+color:var(--aqua);
+}
+
+#content a:hover {
+color:var(--bright-aqua);
+}

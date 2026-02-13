@@ -16,6 +16,9 @@ if (isNaN(date)) {
 return res.status(400).json({error:"invalid date"});
 }
 
+if(!reqfil) {
+return res.status(400).json({error:"invalid file"});
+}
 
 
 try {
