@@ -34,6 +34,10 @@ color:var(--bg3);
 user-select:none;
 }
 
+spoiler.hidden img {
+opacity:0;
+}
+
 code {
 background:var(--bg2);
 display:inline-block;
