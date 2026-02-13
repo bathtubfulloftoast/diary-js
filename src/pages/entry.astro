@@ -16,7 +16,7 @@ const ePATH = process.env.EDITORPATH;
 <div id="topicons">
 <a id="goback"><i class="bi bi-arrow-left"></i></a>
 <a id="edit" href={eURL + ePATH} target="_blank"><i class="bi bi-folder-fill"></i></a>
-
+<a id="copylink" href="#"><i class="bi bi-share-fill"></i></a>
 </div>
 <hr>
 
@@ -92,5 +92,10 @@ event.preventDefault();
 window.scrollTo(0, 0);
 })
 
+document.getElementById("copylink").addEventListener("click", function(event) {
+event.preventDefault();
+navigator.clipboard.writeText(window.location.origin+"/share/"+`?date=${month}/${day}/${year}`);
+})
 });
 </script>
+<script src="/src/scripts/global.js"></script>

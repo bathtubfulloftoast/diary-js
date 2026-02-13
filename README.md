@@ -36,7 +36,7 @@ any software will do (even a default nginx/apache2 file list) but i reccomend [c
 * [X] Port in .env
 * [ ] Public URL in .env
 * [ ] add logging
-* [ ] more options for href linking (to files and shit)
+* [X] more options for href linking (to files and shit)
 * [ ] cache re-built entries (but not ones from current date)
 * [ ] allow for cache clearing
 * [ ] allow image resizing?
@@ -47,3 +47,4 @@ any software will do (even a default nginx/apache2 file list) but i reccomend [c
 * [X] set error codes for api
 * [ ] proper password menu
 * [ ] check if linked file is directory
+* [ ] add access log
