@@ -2,6 +2,14 @@
 
 This is version 3 of **Novas Diary** this is currently HEAVY development as ive just started but yeag
 
+# Getting Started
+
+* ``git clone https://git.gay/bathtubfulloftoast/diary.git``
+* ``pnpm install``
+* ``cp .env.example .env``
+* ``pnpm run build``
+* ``node server.js``
+
 # Config Options
 
 ## Port
