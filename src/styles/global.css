@@ -1,7 +1,8 @@
 body {
     background:var(--bg);
     text-align:center;
-    color:var(--fg)
+    color:var(--fg);
+    overflow-x:hidden;
 }
 
 a {
