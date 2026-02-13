@@ -46,3 +46,4 @@ any software will do (even a default nginx/apache2 file list) but i reccomend [c
 * [X] better error handling for pages (get error: thing)
 * [X] set error codes for api
 * [ ] proper password menu
+* [ ] check if linked file is directory
