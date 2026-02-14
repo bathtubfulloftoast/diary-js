@@ -8,12 +8,13 @@ import '/src/styles/global.css';
 import '/src/styles/entrylist.css';
 
 const name = process.env.TITLE;
+const baseURL = process.env.BASEURL || "/";
 ---
-<head>
+<head baseurl={baseURL}>
 <title>Entries</title>
 </head>
 <div id="topicons">
-<a href="/" ><i class="bi bi-arrow-left"></i></a>
+<a href={baseURL} ><i class="bi bi-arrow-left"></i></a>
 
 </div>
 <hr>
@@ -24,6 +25,8 @@ const name = process.env.TITLE;
 
 <script>
 document.addEventListener("DOMContentLoaded", async function() {
+const baseURL = document.head.getAttribute("baseurl");
+
 let hash = window.location.hash;
 hash = hash.substring(1);
 hash = decodeURI(hash);
@@ -33,7 +36,7 @@ return alert("invalid year");
 }
 
 // const response = await fetch('/entries.json');
-const response = await fetch(`/api/entries?year=${hash}`);
+const response = await fetch(baseURL+`api/entries?year=${hash}`);
 const data = await response.json();
 
 if(data.error) {
@@ -56,7 +59,7 @@ const wrap = document.getElementById("dates");
     const cmonth = month;
 
     if (data.indexOf(`${cmonth}-${cday}`) !== -1) {
-    table += '<div class="button valid">' + `<a href="/entry#${cmonth}/${cday}/${hash}">` + cday + '</a></div>';
+    table += '<div class="button valid">' + `<a href="${baseURL}entry#${cmonth}/${cday}/${hash}">` + cday + '</a></div>';
     } else {
     table += '<div class="button invalid">' + cday + '</div>';
     }

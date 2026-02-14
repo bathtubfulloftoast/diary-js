@@ -10,19 +10,24 @@ import entries from './functions/entries.js';
 import shr from './functions/share.js';
 
 const port = process.env.PORT || 4321;
+const baseURL = process.env.BASEURL || "/";
 
 const app = express();
 
-app.get('/api/yearlist', ylist);
-app.get('/api/entry', diarypost);
-app.get('/api/file', file);
-app.get('/api/entries', entries);
+app.get(baseURL+'api/yearlist', ylist);
+app.get(baseURL+'api/entry', diarypost);
+app.get(baseURL+'api/file', file);
+app.get(baseURL+'api/entries', entries);
 
-app.get('/share', shr);
+app.get(baseURL+'share', shr);
 
-const base = '/';
+const base = baseURL;
 app.use(base, express.static('dist/client/'));
 app.use(ssrHandler);
+
+app.use((req, res) => {
+res.status(404).sendFile('dist/client/404.html', { root: '.' });
+});
 
 app.listen(port);
 console.log(`started server at http://localhost:${port}`);

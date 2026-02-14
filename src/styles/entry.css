@@ -16,12 +16,12 @@ object-fit: contain;
 }
 
 video {
-width:50%;
+max-width: 60%;
 max-height: 70vh;
 }
 
 audio {
-width: 50%;
+width: 70%;
 }
 
 spoiler {

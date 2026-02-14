@@ -1,0 +1,44 @@
+---
+import 'dotenv/config';
+
+import '/src/styles/colors.css';
+import '/src/styles/font.css';
+import '/src/styles/global.css';
+
+const baseURL = process.env.BASEURL || "/";
+
+---
+
+<head>
+<title>Not Found</title>
+<style>
+.center-screen {
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+min-height: 100vh;
+}
+
+a:link,a:visited {
+color:var(--aqua);
+}
+
+a:hover {
+color:var(--bright-aqua)
+}
+
+h1 {
+font-size:5vw;
+}
+</style>
+</head>
+
+<body>
+<div class="center-screen">
+<div>
+<h1>404 Not Found</h1>
+<p><a href={baseURL}>click to go back</a></p>
+</div>
+</div>
+</body>

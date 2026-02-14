@@ -25,6 +25,15 @@ EditorURL and EditorPath are both for viewing/editing the files of your diary/jo
 
 any software will do (even a default nginx/apache2 file list) but i reccomend [copyparty](https://github.com/9001/copyparty) as thats what i use.
 
+## Base URL
+
+the base url MUST end in a ``/`` ex: ``/diary/`` or ``/journal/`` if you dont do this links will break.
+
+## Public URL
+
+this is the public url for your instance, this is the default link used for any links/sharing 
+
+if unset this will just use the url youre connected to
 
 # ToDo
 
@@ -49,4 +58,4 @@ any software will do (even a default nginx/apache2 file list) but i reccomend [c
 * [ ] check if linked file is directory
 * [ ] add access log
 * [ ] search menu
-* [ ] base URL in .env
+* [X] base URL in .env

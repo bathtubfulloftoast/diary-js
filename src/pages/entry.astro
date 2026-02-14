@@ -8,15 +8,22 @@ import '/src/styles/global.css';
 import '/src/styles/entry.css';
 
 const name = process.env.TITLE;
+const pubURL = process.env.PUBLICURL;
 
 const eURL = process.env.EDITORURL;
 const ePATH = process.env.EDITORPATH;
+
+const baseURL = process.env.BASEURL || "/";
 ---
+<head baseurl={baseURL}>
+<title>Entry</title>
+</head>
+
 <body>
 <div id="topicons">
 <a id="goback"><i class="bi bi-arrow-left"></i></a>
 <a id="edit" href={eURL + ePATH} target="_blank"><i class="bi bi-folder-fill"></i></a>
-<a id="copylink" href="#"><i class="bi bi-share-fill"></i></a>
+<a id="copylink" href="#" puburl={pubURL}><i class="bi bi-share-fill"></i></a>
 </div>
 <hr>
 
@@ -34,6 +41,8 @@ const ePATH = process.env.EDITORPATH;
 
 <script>
 document.addEventListener("DOMContentLoaded", async function() {
+const baseURL = document.head.getAttribute("baseurl");
+
 let hash = window.location.hash;
 hash = hash.substring(1);
 hash = decodeURI(hash);
@@ -44,7 +53,7 @@ const date = new Date(hash);
 document.title=date.toLocaleString('default', { dateStyle: 'long' });
 
 // const response = await fetch('/entry.html');
-const response = await fetch(`/api/entry?date=${hash}`);
+const response = await fetch(baseURL+`api/entry?date=${hash}`);
 const data = await response.text();
 
 if(!response.ok) {
@@ -72,6 +81,8 @@ spoiler.className="hidden";
 
 <script>
 document.addEventListener("DOMContentLoaded", async function() {
+const baseURL = document.head.getAttribute("baseurl");
+
 let hash = window.location.hash;
 hash = hash.substring(1);
 hash = decodeURI(hash);
@@ -81,7 +92,7 @@ var day = String(date.getDate());
 var month = String(date.getMonth() + 1); //January is 0!
 var year = date.getFullYear();
 
-document.getElementById("goback").href="/entries#"+year;
+document.getElementById("goback").href=baseURL+"entries#"+year;
 
 const edit = document.getElementById("edit");
 edit.href = edit.href + `${year}/${month}/${day}/`;
@@ -92,9 +103,15 @@ event.preventDefault();
 window.scrollTo(0, 0);
 })
 
-document.getElementById("copylink").addEventListener("click", function(event) {
+const copylink = document.getElementById("copylink");
+let copyURL = window.location.origin;
+if(copylink.getAttribute("puburl")) {
+copyURL = copylink.getAttribute("puburl");
+}
+
+copylink.addEventListener("click", function(event) {
 event.preventDefault();
-navigator.clipboard.writeText(window.location.origin+"/share/"+`?date=${month}/${day}/${year}`);
+navigator.clipboard.writeText(copyURL+baseURL+"share/"+`?date=${month}/${day}/${year}`);
 })
 });
 </script>
