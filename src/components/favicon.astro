@@ -1,13 +1,15 @@
 ---
-import fs from 'fs';
+import 'dotenv/config';
 import { glob } from 'glob'
+
+const baseURL = process.env.BASEURL || "/";
 
 const files = await glob(`./branding/favicon.*`);
 if (files.length !== 0) {
 files.sort();
 var favicon = files[0];
 favicon = favicon.replace(/(.*)\//g, "");
-favicon = "/" + favicon;
+favicon = baseURL + favicon;
 // atrocious code
 }
 ---
