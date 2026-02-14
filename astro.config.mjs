@@ -10,6 +10,9 @@ const baseURL = process.env.BASEURL || "/";
 export default defineConfig({
   publicDir: './branding',
   base: baseURL,
+  integrations: [
+  (await import("astro-compress")).default({Image: false}),
+  ],
   adapter: node({
     mode: 'middleware',
   })
