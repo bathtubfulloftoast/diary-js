@@ -49,3 +49,4 @@ any software will do (even a default nginx/apache2 file list) but i reccomend [c
 * [ ] check if linked file is directory
 * [ ] add access log
 * [ ] search menu
+* [ ] base URL in .env
