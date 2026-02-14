@@ -6,6 +6,8 @@ import '/src/styles/colors.css';
 import '/src/styles/global.css';
 import '/src/styles/entry.css';
 
+import Favicon from '/src/components/favicon.astro';
+
 const name = process.env.TITLE;
 const pubURL = process.env.PUBLICURL;
 
@@ -16,6 +18,7 @@ const baseURL = process.env.BASEURL || "/";
 ---
 <head baseurl={baseURL}>
 <title>Entry</title>
+<Favicon />
 </head>
 
 <body>

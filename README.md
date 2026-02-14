@@ -33,19 +33,28 @@ this is the public url for your instance, this is the default link used for any 
 
 if unset this will just use the url youre connected to
 
+# Branding
+anything thats placed in the ``branding/`` directory
+
 ## Custom CSS
 
 > [!NOTE]
 > the customization settings are currently quite unfriendly with how i use class names and IDs
 
-by placing a custom.css file in the ``branding/`` directory you can change the css in any way you desire
+by placing a custom.css file in the branding directory you can change the css in any way you desire
+
+## Favicon/TabIcon
+
+place a 16x16 (not required but thats the size itl show as) image in the branding directory named favicon
+
+the priority is of the file extensions alphabetical order
 
 # ToDo
 
 * [ ] Theme Selector (only colors)
 * [X] Custom CSS for branding
 * [ ] friendlier class names for custom.css
-* [ ] favicon detection (.png .ico etc)
+* [X] favicon detection (.png .ico etc)
 * [X] explain shit in readme
 * [ ] Custom Logo for branding
 * [X] Port in .env

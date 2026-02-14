@@ -5,12 +5,15 @@ import '/src/styles/years.css';
 import '/src/styles/colors.css';
 import '/src/styles/global.css';
 
+import Favicon from '/src/components/favicon.astro';
+
 const name = process.env.TITLE;
 const baseURL = process.env.BASEURL || "/";
 
 ---
 <head baseurl={baseURL}> <!-- holy shit this is the official method they suggest -->
 <title>{name}</title>
+<Favicon />
 </head>
 
 <body>

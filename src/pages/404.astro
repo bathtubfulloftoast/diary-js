@@ -4,12 +4,15 @@ import 'dotenv/config';
 import '/src/styles/colors.css';
 import '/src/styles/global.css';
 
+import Favicon from '/src/components/favicon.astro';
+
 const baseURL = process.env.BASEURL || "/";
 
 ---
 
 <head>
 <title>Not Found</title>
+<Favicon />
 <style>
 .center-screen {
 display: flex;

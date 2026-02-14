@@ -6,11 +6,14 @@ import '/src/styles/colors.css';
 import '/src/styles/global.css';
 import '/src/styles/entrylist.css';
 
+import Favicon from '/src/components/favicon.astro';
+
 const name = process.env.TITLE;
 const baseURL = process.env.BASEURL || "/";
 ---
 <head baseurl={baseURL}>
 <title>Entries</title>
+<Favicon />
 </head>
 <div id="topicons">
 <a href={baseURL} ><i class="bi bi-arrow-left"></i></a>
