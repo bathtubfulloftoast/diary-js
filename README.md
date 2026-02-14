@@ -74,3 +74,4 @@ the priority is of the file extensions alphabetical order
 * [ ] add access log
 * [ ] search menu
 * [X] base URL in .env
+* [ ] figure out embedded script functionality
