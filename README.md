@@ -75,3 +75,4 @@ the priority is of the file extensions alphabetical order
 * [ ] search menu
 * [X] base URL in .env
 * [ ] figure out embedded script functionality
+* [ ] PWA support
