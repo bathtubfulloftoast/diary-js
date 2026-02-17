@@ -55,7 +55,7 @@ const date = new Date(hash);
 document.title=date.toLocaleString('default', { dateStyle: 'long' });
 
 // const response = await fetch('/entry.html');
-const response = await fetch(baseURL+`api/entry?date=${hash}`);
+const response = await fetch(baseURL+`api/file?date=${hash}&file=entry.html`);
 const data = await response.text();
 
 if(!response.ok) {

@@ -3,7 +3,6 @@ import 'dotenv/config';
 import { handler as ssrHandler } from './dist/server/entry.mjs';
 
 import ylist from './functions/yearlist.js';
-import diarypost from './functions/entry.js';
 import file from './functions/file.js';
 import entries from './functions/entries.js';
 
@@ -15,7 +14,6 @@ const baseURL = process.env.BASEURL || "/";
 const app = express();
 
 app.get(baseURL+'api/yearlist', ylist);
-app.get(baseURL+'api/entry', diarypost);
 app.get(baseURL+'api/file', file);
 app.get(baseURL+'api/entries', entries);
 
