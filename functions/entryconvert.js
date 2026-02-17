@@ -18,8 +18,7 @@ var replace = data.replace(/(src|href|poster)\s*=\s*"([^"]+)"/g, function(match,
 
 });
 
-replace = replace.replace(/<!--(.*)-->/gs,"");
-replace = replace.replace(/<script(.*)>(.*)<\/script>/gs,"");
+replace = replace.replace(/<!--(.*?)-->/gs,"");
 
 return replace;
 }
