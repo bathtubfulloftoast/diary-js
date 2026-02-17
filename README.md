@@ -49,6 +49,27 @@ place a 16x16 (not required but thats the size itl show as) image in the brandin
 
 the priority is of the file extensions alphabetical order
 
+# File Conversion
+when linking a file inside of another you can set various flags to do stuff.
+
+## convert=false
+by placing ``?convert=false`` after a linked file you can bypass any possible conversions that might be made
+
+false is the only option.
+
+> [!NOTE]
+> everything after this is not implemented and is image specific. i do not plan to add video/audio support.
+
+## size
+this lets you change the size of an image for example ``?size=800`` will scale the image to be a maximum of 800 pixels wide/tall.
+
+## width/height
+both of these will entirely ignore aspect ratio and will 
+
+## format
+this lets you change the format of an image from one to another
+
+
 # ToDo
 
 * [ ] Theme Selector (only colors)

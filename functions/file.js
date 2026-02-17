@@ -1,6 +1,6 @@
 import fs from 'fs';
 import mime from 'mime-types';
-import entryconvert from './entryconvert.js';
+import entryconvert from './converters/html.js';
 
 export default async function swag(req, res) {
 const {date: reqdate, file: reqfil, convert: convopt} = req.query;
