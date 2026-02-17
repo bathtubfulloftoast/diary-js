@@ -82,10 +82,10 @@ this lets you change the format of an image from one to another
 * [ ] Public URL in .env
 * [ ] add logging
 * [X] more options for href linking (to files and shit)
-* [ ] cache re-built entries (but not ones from current date)
+* [ ] cache converted files (entries/images)
 * [ ] allow for cache clearing
-* [ ] allow image resizing?
-* [ ] rescale for mobile
+* [ ] allow image resizing
+* [X] rescale for mobile
 * [X] finish share page
 * [ ] automatic code highlighting
 * [X] better error handling for pages (get error: thing)
