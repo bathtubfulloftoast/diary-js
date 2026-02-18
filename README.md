@@ -52,6 +52,18 @@ the priority is of the file extensions alphabetical order
 # File Conversion
 when linking a file inside of another you can set various flags to do stuff.
 
+## defaults
+
+by default files are converted as such,
+
+### HTML
+
+HTML files are converted so that their sources will link to the proper file inside of the entries directory.
+
+### Images 
+
+by default images are a maximum of 1000 pixels and are converted to webp (this is to make loading quicker if there are many images.)
+
 ## convert=false
 by placing ``?convert=false`` after a linked file you can bypass any possible conversions that might be made
 
@@ -95,5 +107,5 @@ this lets you change the format of an image from one to another
 * [ ] add access log
 * [ ] search menu
 * [X] base URL in .env
-* [ ] figure out embedded script functionality
+* [X] figure out embedded script functionality (thank you [allenhwkim)(https://stackoverflow.com/users/454252/allenhwkim))
 * [ ] PWA support
