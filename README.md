@@ -107,5 +107,5 @@ this lets you change the format of an image from one to another
 * [ ] add access log
 * [ ] search menu
 * [X] base URL in .env
-* [X] figure out embedded script functionality (thank you [allenhwkim)(https://stackoverflow.com/users/454252/allenhwkim))
+* [X] figure out embedded script functionality (thank you [allenhwkim](https://stackoverflow.com/users/454252/allenhwkim))
 * [ ] PWA support
