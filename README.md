@@ -2,6 +2,14 @@
 
 This is version 3 of **Novas Diary** this is currently HEAVY development as ive just started but yeag
 
+# Contributing
+
+if youre on github and you wish to contribute please direct yourself toward the [git.gay](https://git.gay/bathtubfulloftoast/diary) repository.
+
+this is the primary repository where i actually push my commits to.
+
+im too lazy to setup a proper mirror between the two so git.gay is the only place any changes can be made to.
+
 # Getting Started
 
 * ``git clone https://git.gay/bathtubfulloftoast/diary.git``
