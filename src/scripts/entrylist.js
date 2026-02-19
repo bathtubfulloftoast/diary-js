@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     if(!response.ok) {
         alert(`couldnt grab entries status code: ${response.status}`);
-        console.log(response);
         window.location.replace("/");
         return;
     }

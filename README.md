@@ -70,7 +70,7 @@ by placing ``?convert=false`` after a linked file you can bypass any possible co
 false is the only option.
 
 > [!NOTE]
-> everything after this is not implemented and is image specific. i do not plan to add video/audio support.
+> everything after this is not implemented.
 
 ## size
 this lets you change the size of an image for example ``?size=800`` will scale the image to be a maximum of 800 pixels wide/tall.
@@ -96,7 +96,9 @@ this lets you change the format of an image from one to another
 * [X] more options for href linking (to files and shit)
 * [ ] cache converted files (entries/images)
 * [ ] allow for cache clearing
-* [ ] allow image resizing
+* [ ] allow image conversion
+* [ ] allow video conversion
+* [ ] allow audio conversion (to opus by default)
 * [X] rescale for mobile
 * [X] finish share page
 * [ ] automatic code highlighting
@@ -109,3 +111,4 @@ this lets you change the format of an image from one to another
 * [X] base URL in .env
 * [X] figure out embedded script functionality (thank you [allenhwkim](https://stackoverflow.com/users/454252/allenhwkim))
 * [ ] PWA support
+* [ ] "Logo" leads to current entry

@@ -1,12 +1,20 @@
 import express from 'express';
 import 'dotenv/config';
+import fs from 'fs';
 import { handler as ssrHandler } from './dist/server/entry.mjs';
 
 import ylist from './functions/yearlist.js';
 import file from './functions/file.js';
 import entries from './functions/entries.js';
-
 import shr from './functions/share.js';
+
+try {
+  if (!fs.existsSync("./entries")) {
+    fs.mkdirSync("./entries");
+  }
+} catch (err) {
+  console.error(err);
+}
 
 const port = process.env.PORT || 4321;
 const baseURL = process.env.BASEURL || "/";
