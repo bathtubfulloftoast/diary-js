@@ -57,6 +57,10 @@ place a 16x16 (not required but thats the size itl show as) image in the brandin
 
 the priority is of the file extensions alphabetical order
 
+## Logo Image
+
+by setting LOGOIMG in in the ``.env`` you can set a custom image to show up, if you really want to
+
 # File Conversion
 when linking a file inside of another you can set various flags to do stuff.
 
@@ -97,9 +101,9 @@ this lets you change the format of an image from one to another
 * [ ] friendlier class names for custom.css
 * [X] favicon detection (.png .ico etc)
 * [X] explain shit in readme
-* [ ] Custom Logo for branding
+* [X] Custom Logo for branding
 * [X] Port in .env
-* [ ] Public URL in .env
+* [X] Public URL in .env
 * [ ] add logging
 * [X] more options for href linking (to files and shit)
 * [ ] cache converted files (entries/images)

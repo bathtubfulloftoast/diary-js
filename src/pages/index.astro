@@ -9,6 +9,13 @@ import Favicon from '/src/components/favicon.astro';
 
 const name = process.env.TITLE;
 const baseURL = process.env.BASEURL || "/";
+const logo = process.env.LOGOIMG;
+
+let header = name;
+if (logo) {
+header = `<img src="${baseURL}${logo}">`
+}
+// if anybody ever looks at this and knows a better solution please fucking tell me
 
 ---
 <head baseurl={baseURL}> <!-- holy shit this is the official method they suggest -->
@@ -18,7 +25,7 @@ const baseURL = process.env.BASEURL || "/";
 </head>
 
 <body>
-<h1 id="title">{name}</h1>
+<h1 id="title"><Fragment set:html={header} /></h1>
 <hr>
 <div id="yearlist">
 </div>
