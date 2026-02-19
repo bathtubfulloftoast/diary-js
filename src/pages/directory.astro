@@ -1,0 +1,32 @@
+---
+import 'dotenv/config';
+import "bootstrap-icons/font/bootstrap-icons.min.css";
+
+import '/src/styles/colors.css';
+import '/src/styles/global.css';
+import '/src/styles/directory.css';
+
+import Favicon from '/src/components/favicon.astro';
+
+const name = process.env.TITLE;
+const pubURL = process.env.PUBLICURL;
+
+const eURL = process.env.EDITORURL;
+const ePATH = process.env.EDITORPATH;
+
+const baseURL = process.env.BASEURL || "/";
+---
+<head baseurl={baseURL}>
+<title>Directory</title>
+<Favicon />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<div id="topicons"></div>
+<hr>
+<div id="content">
+</div>
+</body>
+
+<script src="/src/scripts/dirgrab.js"></script>

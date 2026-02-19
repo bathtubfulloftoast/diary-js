@@ -67,23 +67,6 @@ padding:2px;
 border:1px solid var(--bg4);
 }
 
-#topicons {
-font-size:30px;
-text-align:left;
-margin-left: 10px;
-margin-top: 10px;
-margin-bottom: -10px;
-}
-
-#bottomicons {
-font-size:30px;
-}
-
-#topicons a:link, #topicons a:visited, #bottomicons a:link, #bottomicons a:visited {
-color:var(--red);
-}
-
-
 #content a:link, #content a:visited{
 color:var(--aqua);
 }

@@ -33,13 +33,6 @@ EditorURL and EditorPath are both for viewing/editing the files of your diary/jo
 
 any software will do (even a default nginx/apache2 file list) but i reccomend [copyparty](https://github.com/9001/copyparty) as thats what i use.
 
-## Viewer Options
-ViewURL and ViewPath are specifically for letting people see linked directories, if unset these will default to EditorURL and EditorPath
-
-if you wish to link to directories, the current solution is to setup something like apache2, nginx or copyparty to share any given directory.
-
-if you just want to setup an nginx viewer set ViewURL to null and it will just ignore it.
-
 ## Base URL
 the base url MUST end in a ``/`` ex: ``/diary/`` or ``/journal/`` if you dont do this links will break.
 
@@ -117,4 +110,6 @@ this lets you change the format of an image from one to another
 * [ ] add access log
 * [ ] search menu
 * [ ] PWA support
-* [ ] BASIC directory viewer
+* [X] BASIC directory viewer
+* [ ] file identification for dir viewer
+* [ ] create top icons with JS instead of being baked into the HTML

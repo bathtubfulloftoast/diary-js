@@ -3,14 +3,7 @@ import mime from 'mime-types';
 import entryconvert from './converters/html.js';
 import 'dotenv/config';
 
-const eURL = process.env.EDITORURL;
-const ePATH = process.env.EDITORPATH;
-var vURL = process.env.VIEWURL || eURL;
-const vPATH = process.env.VIEWPATH || ePATH;
-
-if(vURL.toLowerCase() == "null") { // env always imports as a string
-vURL = "";
-}
+const baseURL = process.env.BASEURL || "/";
 
 export default async function swag(req, res) {
 const {date: reqdate, file: reqfil, convert: convopt} = req.query;
@@ -28,7 +21,8 @@ const day = String(date.getDate());
 const month = String(date.getMonth() + 1); //January is 0!
 const year = date.getFullYear();
 
-const file = reqfil.replace(/^(\/|)(\.\/|\.\.\/)/g, "");
+var file = reqfil.replace(/\/+/g, "/");
+file = file.replace(/(\/|)(\.\/|\.\.\/)/g, "./");
 
 const extMatch = file.match(/\.([^.]+)$/);
 const filext = extMatch ? extMatch[1].toLowerCase() : "";
@@ -36,11 +30,6 @@ const filext = extMatch ? extMatch[1].toLowerCase() : "";
 if (isNaN(date)) {
 return res.status(400).json({error:"invalid date"});
 }
-
-if(!reqfil) {
-return res.status(400).json({error:"invalid file"});
-}
-
 
 try {
     const data = await fs.promises.readFile(`./entries/${year}/${month}/${day}/${file}`);
@@ -69,9 +58,9 @@ switch (filext) {
 
 } catch (err) {
   if(err.errno == -21) {// gonna hope this error number ONLY applies to this.
-  res.redirect(301, vURL+vPATH+`${year}/${month}/${day}/${file}`)
-  } else if (err.errno = -2) {
-  res.status(404).json({error:"couldnt read file"});
+  res.redirect(301, baseURL+"directory"+`?date=${reqdate}&dir=${reqfil}`)
+  } else if (err.errno == -2) {
+  res.status(404).json({error:"file doesnt exist"});
   } else {
   res.status(200).json(err);
   }

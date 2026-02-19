@@ -6,6 +6,7 @@ import { handler as ssrHandler } from './dist/server/entry.mjs';
 import ylist from './functions/yearlist.js';
 import file from './functions/file.js';
 import entries from './functions/entries.js';
+import dir from './functions/directory.js';
 import shr from './functions/share.js';
 
 try {
@@ -27,6 +28,7 @@ const app = express();
 app.get(baseURL+'api/yearlist', ylist);
 app.get(baseURL+'api/file', file);
 app.get(baseURL+'api/entries', entries);
+app.get(baseURL+'api/dir', dir);
 
 app.get(baseURL+'share', shr);
 
