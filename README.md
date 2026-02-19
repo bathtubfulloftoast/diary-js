@@ -33,6 +33,13 @@ EditorURL and EditorPath are both for viewing/editing the files of your diary/jo
 
 any software will do (even a default nginx/apache2 file list) but i reccomend [copyparty](https://github.com/9001/copyparty) as thats what i use.
 
+## Viewer Options
+ViewURL and ViewPath are specifically for letting people see linked directories, if unset these will default to EditorURL and EditorPath
+
+if you wish to link to directories, the current solution is to setup something like apache2, nginx or copyparty to share any given directory.
+
+if you just want to setup an nginx viewer set ViewURL to null and it will just ignore it.
+
 ## Base URL
 the base url MUST end in a ``/`` ex: ``/diary/`` or ``/journal/`` if you dont do this links will break.
 
@@ -97,30 +104,17 @@ this lets you change the format of an image from one to another
 # ToDo
 
 * [ ] Theme Selector (only colors)
-* [X] Custom CSS for branding
 * [ ] friendlier class names for custom.css
-* [X] favicon detection (.png .ico etc)
-* [X] explain shit in readme
-* [X] Custom Logo for branding
-* [X] Port in .env
-* [X] Public URL in .env
 * [ ] add logging
-* [X] more options for href linking (to files and shit)
 * [ ] cache converted files (entries/images)
 * [ ] allow for cache clearing
 * [ ] allow image conversion
 * [ ] allow video conversion
 * [ ] allow audio conversion (to opus by default)
-* [X] rescale for mobile
-* [X] finish share page
 * [ ] automatic code highlighting
-* [X] better error handling for pages (get error: thing)
-* [X] set error codes for api
 * [ ] proper password menu
 * [ ] check if linked file is directory
 * [ ] add access log
 * [ ] search menu
-* [X] base URL in .env
-* [X] figure out embedded script functionality (thank you [allenhwkim](https://stackoverflow.com/users/454252/allenhwkim))
 * [ ] PWA support
-* [X] "Logo" leads to current entry
+* [ ] BASIC directory viewer
