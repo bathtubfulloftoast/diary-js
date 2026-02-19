@@ -26,3 +26,11 @@ code {
   padding:2px;
   border:1px solid var(--bg3);
 }
+
+#title a:link, #title a:visited {
+color:var(--red);
+}
+
+#title a:hover {
+color:var(--bright-red);
+}

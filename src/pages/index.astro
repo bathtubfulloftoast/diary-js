@@ -18,7 +18,7 @@ const baseURL = process.env.BASEURL || "/";
 </head>
 
 <body>
-<h1>{name}</h1>
+<h1 id="title">{name}</h1>
 <hr>
 <div id="yearlist">
 </div>
@@ -26,4 +26,5 @@ const baseURL = process.env.BASEURL || "/";
 </body>
 
 <script src="/src/scripts/yearlist.js"></script>
+<script src="/src/scripts/currententry.js"></script> <!-- im making this a seperate file so it can break safely and lazily. -->
 <script src="/src/scripts/global.js"></script>
