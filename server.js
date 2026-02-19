@@ -12,6 +12,9 @@ try {
   if (!fs.existsSync("./entries")) {
     fs.mkdirSync("./entries");
   }
+  if (!fs.existsSync("./cache")) {
+    fs.mkdirSync("./cache");
+  }
 } catch (err) {
   console.error(err);
 }

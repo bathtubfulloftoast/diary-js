@@ -111,4 +111,4 @@ this lets you change the format of an image from one to another
 * [X] base URL in .env
 * [X] figure out embedded script functionality (thank you [allenhwkim](https://stackoverflow.com/users/454252/allenhwkim))
 * [ ] PWA support
-* [ ] "Logo" leads to current entry
+* [X] "Logo" leads to current entry
