@@ -50,12 +50,21 @@ document.addEventListener("DOMContentLoaded", async function() {
     const spoilers = tcont.querySelectorAll("spoiler");
 
     spoilers.forEach(async (spoiler) => {
+        const hide = document.createElement("div");
+        hide.innerHTML = spoiler.innerHTML;
+        hide.style.opacity=0;
+        hide.style.pointerEvents="none";
+        spoiler.innerHTML = "";
+        spoiler.appendChild(hide);
         spoiler.className="hidden";
         spoiler.addEventListener("click", function(event) {
             if(spoiler.className == "hidden" ) {
                 spoiler.removeAttribute('class');
+                hide.removeAttribute('style');
             } else {
                 spoiler.className="hidden";
+                hide.style.opacity=0;
+                hide.style.pointerEvents="none";
             }
         })
     });
