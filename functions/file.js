@@ -1,6 +1,7 @@
 import fs from 'fs';
 import mime from 'mime-types';
 import entryconvert from './converters/html.js';
+import md5 from 'md5';
 import 'dotenv/config';
 
 import { EventEmitter } from 'events';
@@ -42,11 +43,11 @@ if (isNaN(date)) {
 return res.status(400).json({error:"invalid date"});
 }
 
-try {
-    const data = await fs.promises.readFile(`./entries/${year}/${month}/${day}/${dir}/${file}`);
-    var mimetype = mime.lookup(file) || 'application/octet-stream';
+const filePath = `./entries/${year}/${month}/${day}/${dir}/${file}`.replace(/\/+/g, "/");
 
-let final = "there was an error.";
+try {
+    const data = await fs.promises.readFile(filePath);
+    var mimetype = mime.lookup(file) || 'application/octet-stream';
 
 res.set('Content-Type', mimetype);
 res.set('Content-Disposition', `inline; filename="${file.replace(/(.*)\//g,"")}"`);
