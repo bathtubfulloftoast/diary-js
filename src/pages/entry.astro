@@ -15,19 +15,20 @@ const eURL = process.env.EDITORURL;
 const ePATH = process.env.EDITORPATH;
 
 const baseURL = process.env.BASEURL || "/";
+
+let editurl = "";
+if(eURL && ePATH) {
+editurl = eURL + ePATH;
+}
 ---
-<head baseurl={baseURL}>
+<head baseurl={baseURL} puburl={pubURL} editurl={editurl}>
 <title>Entry</title>
 <Favicon />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-<div id="topicons">
-<a id="goback"><i class="bi bi-arrow-left"></i></a>
-<a id="edit" href={eURL + ePATH} target="_blank"><i class="bi bi-pencil-square"></i></a>
-<a id="copylink" href="#" puburl={pubURL}><i class="bi bi-share-fill"></i></a>
-</div>
+<div id="topicons"></div>
 <hr>
 
 

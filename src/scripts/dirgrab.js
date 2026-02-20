@@ -44,12 +44,17 @@ const min = cpage * perp - perp;
 const max = cpage * perp;
 
 
-if(data.parent) {
 const parent = document.createElement("a");
 parent.innerHTML = "../<br>";
+
+if(data.parent) {
 parent.href=baseURL+`api/file?date=${date}&file=${data.parent}`;
-wrap.appendChild(parent);
+} else {
+parent.href=baseURL+`directory/?date=${date}`;
 }
+
+wrap.appendChild(parent);
+
 
 const currentlist = flist.slice(min,max);
 
