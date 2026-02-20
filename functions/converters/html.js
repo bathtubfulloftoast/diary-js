@@ -21,7 +21,7 @@ var replace = data.replace(/(src|href|poster)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s
     } else {
     const parse = path.parse(srcValue);
 
-    return `${attr}="${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir+parse.dir}&file=` + parse.base + '"';
+    return `${attr}="${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir+"/"+parse.dir}&file=` + parse.base + '"';
     }
 
 });
