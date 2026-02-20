@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", async function() {
         return;
     }
 
-    const response = await fetch('/entries.json');
-    // const response = await fetch(baseURL+`api/entries?year=${hash}`);
+    // const response = await fetch('/entries.json');
+    const response = await fetch(baseURL+`api/entries?year=${hash}`);
 
     if(!response.ok) {
         alert(`couldnt grab entries status code: ${response.status}`);
