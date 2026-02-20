@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import path from 'path'
 
 const baseURL = process.env.BASEURL || "/";
 
@@ -18,7 +19,9 @@ var replace = data.replace(/(src|href|poster)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s
     if(/^(http|https):\/\//g.test(srcValue) || /^#/g.test(srcValue)) {
     return  `${attr}="${srcValue}"`;
     } else {
-    return `${attr}="${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir}&file=` + srcValue + '"';
+    const parse = path.parse(srcValue);
+
+    return `${attr}="${baseURL}api/file?date=${month}/${day}/${year}&dir=${parse.dir||dir}&file=` + parse.base + '"';
     }
 
 });
