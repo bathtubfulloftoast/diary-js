@@ -113,3 +113,4 @@ this lets you change the format of an image from one to another
 * [X] BASIC directory viewer
 * [ ] file identification for dir viewer
 * [ ] create top icons with JS instead of being baked into the HTML
+* [ ] allow copyparty to be used for viewing files
