@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function() {
     const baseURL = document.head.getAttribute("baseurl");
+    const editURL = document.head.getAttribute("editurl");
 
     let hash = window.location.hash;
     hash = hash.substring(1);
@@ -19,9 +20,9 @@ document.addEventListener("DOMContentLoaded", async function() {
     goback.appendChild(bico);
     wrapper.appendChild(goback);
 
-    if (document.head.editurl) {
+    if (editURL) {
     const edit = document.createElement("a");
-    edit.href = document.head.editurl + `${year}/${month}/${day}/`;
+    edit.href = editURL + `${year}/${month}/${day}/`;
     const eico = document.createElement("i");
     eico.className = "bi bi-pencil-square";
 
