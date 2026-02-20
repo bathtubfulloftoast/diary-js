@@ -15,10 +15,10 @@ var replace = data.replace(/(src|href|poster)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s
 
     srcValue = srcValue.replace(/^(\.\/|\.\.\/)/g, "");
 
-    if(/(http|https):\/\//g.test(srcValue)) {
-        return  `${attr}="${srcValue}"`;
+    if(/^(http|https):\/\//g.test(srcValue) || /^#/g.test(srcValue)) {
+    return  `${attr}="${srcValue}"`;
     } else {
-        return `${attr}="${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir}&file=` + srcValue + '"';
+    return `${attr}="${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir}&file=` + srcValue + '"';
     }
 
 });
