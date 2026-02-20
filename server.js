@@ -9,16 +9,19 @@ import entries from './functions/entries.js';
 import dir from './functions/directory.js';
 import shr from './functions/share.js';
 
+function createdir(dir) {
 try {
-  if (!fs.existsSync("./entries")) {
-    fs.mkdirSync("./entries");
-  }
-  if (!fs.existsSync("./cache")) {
-    fs.mkdirSync("./cache");
+  if (!fs.existsSync("./"+dir)) {
+    fs.mkdirSync("./"+dir);
   }
 } catch (err) {
   console.error(err);
 }
+}
+
+createdir("entries")
+createdir("cache")
+createdir("branding")
 
 const port = process.env.PORT || 4321;
 const baseURL = process.env.BASEURL || "/";
