@@ -1,6 +1,6 @@
 import fs from 'fs';
 import mime from 'mime-types';
-import entryconvert from './converters/html.js';
+import htmlhandler from './converters/html.js';
 import md5 from 'md5';
 import 'dotenv/config';
 
@@ -59,9 +59,7 @@ return res.status(200).send(data);
 switch (filext) {
   case "html":
   case "htm":
-    const htmlString = data.toString("utf-8");
-    var replace = entryconvert(htmlString,date,dir);
-    res.status(200).send(replace);
+    res.status(200).send(htmlhandler(data,date,dir));
     break;
   default:
     res.status(200).send(data);

@@ -4,6 +4,7 @@ import path from 'path';
 
 const baseURL = process.env.BASEURL || "/";
 
+
 export default async function swag(req, res) {
 var {date: reqdate, dir: reqfil} = req.query;
 reqfil = reqfil||"";
@@ -25,27 +26,46 @@ const cpath = `./entries/${year}/${month}/${day}/${file}`;
 
 try {
 var data = await fs.promises.readdir(cpath);
-let poop = [];
+let content = [];
 
 data.forEach(myFunction);
 
 function myFunction(item, index) {
-poop.push({
-name: item,
+const ipath = cpath+"/"+item;
+content.push({
+file: item,
 });
+
 const extMatch = item.match(/\.([^.]+)$/);
 let filext;
 
-const isdir = fs.lstatSync(cpath+"/"+item).isDirectory();
+const isdir = fs.lstatSync(ipath).isDirectory();
+const parse = path.parse(item);
+var stats = fs.statSync(ipath)
+
 if (!isdir) {
+
 filext = extMatch ? extMatch[1].toLowerCase() : "";
-poop[index].ext=filext;
+// console.log(stats);
+
+content[index].name=parse.name;
+content[index].ext=parse.ext;
+content[index].size=stats.size;
+
+
 } else {
-poop[index].isdir=true;
-}
+const subdir = fs.readdirSync(ipath);
+content[index].name= item;
+content[index].isdir= true;
+content[index].files = subdir.length;
 }
 
-res.status(200).json({parent:path.parse(file).dir, content:poop});
+content[index].ctime=Math.floor(stats.ctimeMs); //unix timestamp in MS
+content[index].mtime=Math.floor(stats.mtimeMs); //unix timestamp in MS
+
+}
+
+res.status(200).json({parent:path.parse(file).dir, content:content});
 } catch (err) {
 if(err.errno == -20) {
 res.status(200).json({error: "not a directory"});

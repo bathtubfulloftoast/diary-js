@@ -26,16 +26,26 @@ const wrap = document.getElementById("content");
 const pagenav = document.getElementById("pagenav");
 
 const flist = data.content;
+flist.sort((a, b) => {
+  if (a.isdir && !b.isdir) {
+    return -1;
+  }
+  if (!a.isdir && b.isdir) {
+    return 1;
+  }
+  return a.file.localeCompare(b.file, undefined, { sensitivity: 'base' });
+});
+
 const perp = 50;
 const ptot = flist.length;
 const tpag = Math.ceil(ptot/perp);
 
 const npag = document.createElement("a"); // npag feels like a slur and i dont know why
-npag.href="#";
+npag.href="#";//next page
 npag.innerHTML = "-&gt;";
 
-const ppag = document.createElement("a"); // npag feels like a slur and i dont know why
-ppag.href="#";
+const ppag = document.createElement("a");
+ppag.href="#";// previous page
 ppag.innerHTML = "&lt;-";
 
 function poopfart(cpage) {
@@ -48,7 +58,7 @@ const parent = document.createElement("a");
 parent.innerHTML = "../<br>";
 
 if(data.parent) {
-parent.href=baseURL+`api/file?date=${date}&file=${data.parent}`;
+parent.href=baseURL+`api/file?date=${date}&file=${encodeURIComponent(data.parent)}`;
 } else {
 parent.href=baseURL+`directory/?date=${date}`;
 }
@@ -62,8 +72,8 @@ currentlist.forEach(myFunction);
 
 function myFunction(item, index) {
     const text = document.createElement("a");
-    text.innerHTML = item.name+"<br>";
-    text.href=baseURL+`api/file?date=${date}&dir=${dir}&file=${item.name}`.replace(/\/+/g, "/");
+    text.innerHTML = item.file+"<br>";
+    text.href=baseURL+`api/file?date=${date}&dir=${encodeURIComponent(dir)}&file=${encodeURIComponent(item.file)}`.replace(/\/+/g, "/");
 
     wrap.appendChild(text);
 }

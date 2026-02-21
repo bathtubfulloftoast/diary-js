@@ -3,7 +3,7 @@ import path from 'path'
 
 const baseURL = process.env.BASEURL || "/";
 
-export default function entryconvert(data, date, dir) {
+function entryconvert(data, date, dir) {
 var day = String(date.getDate());
 var month = String(date.getMonth() + 1); //January is 0!
 var year = date.getFullYear();
@@ -28,5 +28,12 @@ var replace = data.replace(/(src|href|poster)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s
 
 replace = replace.replace(/<!--(.*?)-->/gs,"");
 
+return replace;
+}
+
+
+export default function html(data,date,dir) {
+const htmlString = data.toString("utf-8");
+var replace = entryconvert(htmlString,date,dir);
 return replace;
 }
