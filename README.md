@@ -111,6 +111,7 @@ this lets you change the format of an image from one to another
 * [ ] search menu
 * [ ] PWA support
 * [X] BASIC directory viewer
-* [ ] file identification for dir viewer
+* [X] file identification for dir viewer
+* [ ] sort folders first
 * [ ] create top icons with JS instead of being baked into the HTML
 * [ ] allow copyparty to be used for viewing files

@@ -62,8 +62,8 @@ currentlist.forEach(myFunction);
 
 function myFunction(item, index) {
     const text = document.createElement("a");
-    text.innerHTML = item+"<br>";
-    text.href=baseURL+`api/file?date=${date}&dir=${dir}&file=${item}`.replace(/\/+/g, "/");
+    text.innerHTML = item.name+"<br>";
+    text.href=baseURL+`api/file?date=${date}&dir=${dir}&file=${item.name}`.replace(/\/+/g, "/");
 
     wrap.appendChild(text);
 }

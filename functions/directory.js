@@ -21,10 +21,31 @@ const year = date.getFullYear();
 var file = reqfil.replace(/\/+/g, "/");
 file = file.replace(/(\/|)(\.\/|\.\.\/)/g, "./");
 
-try {
-var data = await fs.promises.readdir(`./entries/${year}/${month}/${day}/${file}`);
+const cpath = `./entries/${year}/${month}/${day}/${file}`;
 
-res.status(200).json({parent:path.parse(file).dir, content:data});
+try {
+var data = await fs.promises.readdir(cpath);
+let poop = [];
+
+data.forEach(myFunction);
+
+function myFunction(item, index) {
+poop.push({
+name: item,
+});
+const extMatch = item.match(/\.([^.]+)$/);
+let filext;
+
+const isdir = fs.lstatSync(cpath+"/"+item).isDirectory();
+if (!isdir) {
+filext = extMatch ? extMatch[1].toLowerCase() : "";
+poop[index].ext=filext;
+} else {
+poop[index].isdir=true;
+}
+}
+
+res.status(200).json({parent:path.parse(file).dir, content:poop});
 } catch (err) {
 if(err.errno == -20) {
 res.status(200).json({error: "not a directory"});
