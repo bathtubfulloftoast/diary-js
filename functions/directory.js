@@ -36,20 +36,16 @@ content.push({
 file: item,
 });
 
-const extMatch = item.match(/\.([^.]+)$/);
-let filext;
-
 const isdir = fs.lstatSync(ipath).isDirectory();
 const parse = path.parse(item);
 var stats = fs.statSync(ipath)
 
 if (!isdir) {
 
-filext = extMatch ? extMatch[1].toLowerCase() : "";
 // console.log(stats);
 
 content[index].name=parse.name;
-content[index].ext=parse.ext;
+content[index].ext=parse.ext.replace(/^\./g,"");
 content[index].size=stats.size;
 
 
