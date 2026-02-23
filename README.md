@@ -113,5 +113,5 @@ this lets you change the format of an image from one to another
 * [X] BASIC directory viewer
 * [X] file identification for dir viewer
 * [X] sort folders first
-* [ ] create top icons with JS instead of being baked into the HTML
+* [X] create top icons with JS instead of being baked into the HTML (i did it terribly)
 * [ ] allow copyparty to be used for viewing files

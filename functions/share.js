@@ -1,5 +1,6 @@
 import fs from 'fs';
 import 'dotenv/config';
+import bdate from './date.js';
 
 const name = process.env.TITLE;
 const baseURL = process.env.BASEURL || "/";
@@ -8,14 +9,11 @@ export default async function swag(req, res) {
 const reqdate = req.query.date;
 
 const date = new Date(reqdate);
+const {day,month,year} = bdate(date);
 
 if (isNaN(date)) {
 return res.status(400).json({error:"invalid date"});
 }
-
-var day = String(date.getDate());
-var month = String(date.getMonth() + 1);
-var year = date.getFullYear();
 
 const desc = `Entry for ${date.toLocaleString('default', { dateStyle: 'full' })}`;
 const dest = `${baseURL}entry/#${year}-${month}-${day}`;
