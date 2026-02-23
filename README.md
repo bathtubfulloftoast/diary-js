@@ -99,14 +99,14 @@ this lets you change the format of an image from one to another
 * [ ] Theme Selector (only colors)
 * [ ] friendlier class names for custom.css
 * [ ] add logging
-* [ ] cache converted files (entries/images)
+* [X] cache converted files (**entries**/images)
 * [ ] allow for cache clearing
 * [ ] allow image conversion
 * [ ] allow video conversion
 * [ ] allow audio conversion (to opus by default)
 * [ ] automatic code highlighting
 * [ ] proper password menu
-* [ ] check if linked file is directory
+* [X] check if linked file is directory
 * [ ] add access log
 * [ ] search menu
 * [ ] PWA support

@@ -3,6 +3,7 @@ import mime from 'mime-types';
 import htmlhandler from './converters/html.js';
 import md5 from 'md5';
 import 'dotenv/config';
+import {makedir} from './caching.js';
 
 import { EventEmitter } from 'events';
 EventEmitter.defaultMaxListeners = 0; // iunno what the FUCK im doing.
@@ -24,6 +25,11 @@ const date = new Date(reqdate);
 const day = String(date.getDate());
 const month = String(date.getMonth() + 1); //January is 0!
 const year = date.getFullYear();
+
+const now = new Date(); // WHAT THE FUCK AM I DOING?????
+const nday = String(now.getDate());
+const nmonth = String(now.getMonth() + 1);
+const nyear = now.getFullYear();
 
 var file = reqfil.replace(/\/+/g, "/");
 file = file.replace(/(\/|)(\.\/|\.\.\/)/g, "./");
@@ -56,10 +62,20 @@ if(convopt == "false") {
 return res.status(200).send(data);
 }
 
+
 switch (filext) {
   case "html":
   case "htm":
-    res.status(200).send(htmlhandler(data,date,dir));
+    makedir("html"); // WHAT THE FUCK IS THIS CODE WHAT THE FUCK AM I DOING, IM SO SCARED, IM SO FUCKING SCARED.
+    var dest = `./cache/html/`+md5(filePath);
+    if(fs.existsSync(dest) && `${nday}-${nmonth}-${nyear}` !== `${day}-${month}-${year}`) {
+    const cdat = await fs.promises.readFile(dest);
+    return res.status(200).send(cdat);
+    } else {
+    var html = htmlhandler(data,date,dir);
+    await fs.promises.writeFile(dest, html);
+    return res.status(200).send(html);
+    }
     break;
   default:
     res.status(200).send(data);
