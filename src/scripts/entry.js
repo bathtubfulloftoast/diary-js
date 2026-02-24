@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     const date = new Date(hash);
 
 
-    document.title=date.toLocaleString('default', { dateStyle: 'long' });
+    document.title=date.toLocaleString('default', { dateStyle: 'full' });
 
     // const response = await fetch('/entry.html');
     const response = await fetch(baseURL+`api/file?date=${hash}&file=entry.html`);
