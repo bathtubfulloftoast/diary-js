@@ -1,6 +1,7 @@
 import fs from 'fs';
 import mime from 'mime-types';
 import htmlhandler from './converters/html.js';
+import imageconverter from './converters/image.js';
 import md5 from 'md5';
 import 'dotenv/config';
 import {makedir} from './caching.js';
@@ -57,6 +58,7 @@ try {
 
 res.set('Content-Type', mimetype);
 res.set('Content-Disposition', `inline; filename="${file.replace(/(.*)\//g,"")}"`);
+// res.set('Content-Type', "image/webp");
 
 if(convopt == "false") {
 return res.status(200).send(data);
@@ -75,6 +77,24 @@ switch (filext) {
     var html = htmlhandler(data,date,dir);
     await fs.promises.writeFile(dest, html);
     return res.status(200).send(html);
+    }
+    break;
+  case "png":
+  case "jpg":
+  case "jpeg":
+  case "webp":
+  case "gif":
+  case "avif":
+  case "tiff":
+    makedir("thumbs"); // only thumbnails for now
+    var dest = `./cache/thumbs/`+md5(filePath);
+    if(fs.existsSync(dest)) {
+    const cdat = await fs.promises.readFile(dest);
+    return res.status(200).send(cdat);
+    } else {
+    var image = await imageconverter({data:data,width:1000,height:1000,res:res});
+    await fs.promises.writeFile(dest, image);
+    return res.status(200).send(image);
     }
     break;
   default:
