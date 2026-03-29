@@ -81,6 +81,13 @@ by placing ``?convert=false`` after a linked file you can bypass any possible co
 
 false is the only option.
 
+## thumbnail=true
+by setting ``?thumbnail=true`` a thumbnail will be generated for a video
+
+this thumbnail is the first frame of the video and a full quality frame will be temporarily put in your temp directory,, only temporarily.
+
+true is the only option
+
 # ToDo
 
 * [ ] Theme Selector (only colors)
@@ -90,6 +97,7 @@ false is the only option.
 * [ ] allow for cache clearing
 * [X] allow image conversion
 * [ ] allow video conversion
+* [X] automatic video thumbnails
 * [ ] allow audio conversion (to opus by default)
 * [ ] automatic code highlighting
 * [ ] proper password menu

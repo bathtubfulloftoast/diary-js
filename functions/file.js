@@ -2,6 +2,7 @@ import fs from 'fs';
 import mime from 'mime-types';
 import htmlhandler from './converters/html.js';
 import imageconverter from './converters/image.js';
+import videothumbs from './converters/thumbnailgen.js';
 import md5 from 'md5';
 import 'dotenv/config';
 import {makedir} from './caching.js';
@@ -86,15 +87,43 @@ switch (filext) {
   case "gif":
   case "avif":
   case "tiff":
-    makedir("thumbs"); // only thumbnails for now
-    var dest = `./cache/thumbs/`+md5(filePath);
+    makedir("ithumbs"); // only thumbnails for now
+    var dest = `./cache/ithumbs/`+md5(filePath);
     if(fs.existsSync(dest)) {
     const cdat = await fs.promises.readFile(dest);
+    res.set('Content-Type', "image/webp");
     return res.status(200).send(cdat);
     } else {
     var image = await imageconverter({data:data,width:1000,height:1000,res:res});
     await fs.promises.writeFile(dest, image);
     return res.status(200).send(image);
+    }
+    break;
+  case "mp4":
+  case "webm":
+  case "mov":
+    const thumbgen = req.query.thumbnail;
+    if (thumbgen == "true") {
+    makedir("vthumbs");
+    var dest = `./cache/vthumbs/`+md5(filePath);
+
+    if(fs.existsSync(dest)) {
+      const cdat = await fs.promises.readFile(dest);
+      res.set('Content-Type', "image/webp");
+      return res.status(200).send(cdat);
+    } else {
+      const thumbnail = await videothumbs(filePath);
+      if(thumbnail.error) {
+      return res.status(404).json(thumbnail);
+      } else {
+      const thumbdat = await fs.promises.readFile(thumbnail.file);
+      var image = await imageconverter({data:thumbdat,width:1280,height:720,res:res});
+      await fs.promises.writeFile(dest, image);
+      return res.status(200).send(image);
+      }
+    }
+    } else {
+    res.status(200).send(data);
     }
     break;
   default:

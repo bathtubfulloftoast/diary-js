@@ -12,6 +12,20 @@ var year = date.getFullYear();
 
 const $ = cheerio.load(data);
 
+
+$("video").each(function() {
+var osrc=$(this).attr("poster");
+
+if (osrc && !(/^(http|https):\/\//g.test(osrc)) ) {
+const parse = path.parse(osrc);
+$(this).attr("poster", `${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir+"/"+parse.dir}&file=${parse.base}`);
+} else if(!osrc) {
+const vsrc = $(this).attr("src");
+const parse = path.parse(vsrc);
+$(this).attr("poster", `${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir+"/"+parse.dir}&file=${parse.base}&thumbnail=true`);
+}
+});
+
 $("*").each(function() {
 var osrc=$(this).attr("src");
 
@@ -27,17 +41,6 @@ $("*").each(function() {
 var osrc=$(this).attr("href");
 
 if(osrc && !(/^(http|https):\/\//g.test(osrc) || /^#/g.test(osrc)) ) {
-const parse = path.parse(osrc);
-var nsrc = `${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir+"/"+parse.dir}&file=${parse.base}`;
-$(this).attr("href", nsrc);
-}
-
-});
-
-$("video").each(function() {
-var osrc=$(this).attr("poster");
-
-if(osrc && !(/^(http|https):\/\//g.test(osrc)) ) {
 const parse = path.parse(osrc);
 var nsrc = `${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir+"/"+parse.dir}&file=${parse.base}`;
 $(this).attr("href", nsrc);
