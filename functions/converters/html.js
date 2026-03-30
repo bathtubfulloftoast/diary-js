@@ -54,10 +54,33 @@ return node.type === 'comment'
 $('body').contents().filter(isComment).remove();
 
 $("style").each(function() {
-$(this).replaceWith("<!--style tags arent supported, please link a css file!-->\n");
+// $(this).replaceWith("<!--style tags arent supported, please link a css file!-->\n");
+// $(this).text("test");
+const htreplace = $(this).text();
+
+var csreplace = htreplace.replace(/(url)\s*\(\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))\s*\)/g, function(match, attr, dquot, squot, nquot) {
+
+    let srcValue = dquot || squot || nquot;
+
+    if (!srcValue) { return match} ;
+
+    srcValue = srcValue.replace(/^(\.\/|\.\.\/)/g, "");
+
+    if(/^(http|https):\/\//g.test(srcValue) || /^#/g.test(srcValue)) {
+    return  `${attr}("${srcValue}")`;
+    } else {
+    const parse = path.parse(srcValue);
+
+    return `${attr}("${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir+"/"+parse.dir}&file=` + parse.base + '")';
+    }
+
 });
 
-return $('body').html();
+$(this).text(csreplace);
+
+});
+
+return $.html();
 }
 
 
