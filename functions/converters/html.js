@@ -10,42 +10,46 @@ var month = String(date.getMonth() + 1); //January is 0!
 var year = date.getFullYear();
 // var replace;
 
-const $ = cheerio.load(data);
+function srconv(element,type) {
+var osrc=element.attr(type);
 
+if(osrc && !(/^(http|https):\/\//g.test(osrc))) {
+var nocapes = osrc.split('?')[0];
+
+const parse = path.parse(nocapes);
+
+let params = osrc.split("?").pop();
+params = new URLSearchParams(params);
+// params = params;
+params.set("date",`${month}/${day}/${year}`)
+params.set("dir",`${dir+"/"+parse.dir}`)
+params.set("file",parse.base)
+params=params.toString();
+
+var nsrc = baseURL+"api/file?"+params;
+
+element.attr(type, nsrc);
+}
+}
+
+const $ = cheerio.load(data);
 
 $("video").each(function() {
 var osrc=$(this).attr("poster");
+const vsrc = $(this).attr("src");
 
 if (osrc && !(/^(http|https):\/\//g.test(osrc)) ) {
 const parse = path.parse(osrc);
 $(this).attr("poster", `${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir+"/"+parse.dir}&file=${parse.base}`);
-} else if(!osrc) {
-const vsrc = $(this).attr("src");
+} else if (vsrc && (/^(http|https):\/\//g.test(vsrc)) ) {} else if(!osrc) {
 const parse = path.parse(vsrc);
 $(this).attr("poster", `${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir+"/"+parse.dir}&file=${parse.base}&thumbnail=true`);
 }
 });
 
 $("*").each(function() {
-var osrc=$(this).attr("src");
-
-if(osrc && !(/^(http|https):\/\//g.test(osrc)) ) {
-const parse = path.parse(osrc);
-var nsrc = `${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir+"/"+parse.dir}&file=${parse.base}`;
-$(this).attr("src", nsrc);
-}
-
-});
-
-$("*").each(function() {
-var osrc=$(this).attr("href");
-
-if(osrc && !(/^(http|https):\/\//g.test(osrc) || /^#/g.test(osrc)) ) {
-const parse = path.parse(osrc);
-var nsrc = `${baseURL}api/file?date=${month}/${day}/${year}&dir=${dir+"/"+parse.dir}&file=${parse.base}`;
-$(this).attr("href", nsrc);
-}
-
+srconv($(this),"src");
+srconv($(this),"href");
 });
 
 function isComment(index, node) {
@@ -77,10 +81,16 @@ var csreplace = htreplace.replace(/(url)\s*\(\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+)
 });
 
 $(this).text(csreplace);
-
 });
 
+
+$('head').html( $('head').html().replaceAll("\n","") );
+if($('head').html().length > 1) {
 return $.html();
+} else {
+return $('body').html();
+}
+
 }
 
 

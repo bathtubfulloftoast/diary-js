@@ -76,6 +76,11 @@ HTML files are converted so that their sources will link to the proper file insi
 
 by default images are a maximum of 1000 pixels and are converted to webp (this is to make loading quicker if there are many images.)
 
+> [!NOTE]
+> if you wish to apply these to a linked file (ex: within a src tag) please begin with ? instead of &
+
+ex: src="tomscott.png?convert=false"
+
 ## convert=false
 by placing ``?convert=false`` after a linked file you can bypass any possible conversions that might be made
 
@@ -110,3 +115,4 @@ true is the only option
 * [X] sort folders first
 * [X] create top icons with JS instead of being baked into the HTML (i did it terribly)
 * [ ] allow copyparty to be used for viewing files
+* [ ] rewrite thumbnailer to use FFMPEG instead of sharp

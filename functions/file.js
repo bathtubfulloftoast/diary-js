@@ -28,10 +28,8 @@ const day = String(date.getDate());
 const month = String(date.getMonth() + 1); //January is 0!
 const year = date.getFullYear();
 
-const now = new Date(); // WHAT THE FUCK AM I DOING?????
-const nday = String(now.getDate());
-const nmonth = String(now.getMonth() + 1);
-const nyear = now.getFullYear();
+var now = new Date(); // WHAT THE FUCK AM I DOING?????
+now.setHours(0,0,0,0);
 
 var file = reqfil.replace(/\/+/g, "/");
 file = file.replace(/(\/|)(\.\/|\.\.\/)/g, "./");
@@ -71,7 +69,11 @@ switch (filext) {
   case "htm":
     makedir("html"); // WHAT THE FUCK IS THIS CODE WHAT THE FUCK AM I DOING, IM SO SCARED, IM SO FUCKING SCARED.
     var dest = `./cache/html/`+md5(filePath);
-    if(fs.existsSync(dest) && `${nday}-${nmonth}-${nyear}` !== `${day}-${month}-${year}`) {
+
+    var datediff = date-now;
+    datediff = Math.abs(datediff);
+
+    if(fs.existsSync(dest) && !(datediff <= 86400000) ) {
     const cdat = await fs.promises.readFile(dest);
     return res.status(200).send(cdat);
     } else {
