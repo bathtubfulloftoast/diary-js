@@ -68,11 +68,13 @@ return res.status(200).send(data);
 switch (filext) {
   case "html":
   case "htm":
+  case "php":
     makedir("html"); // WHAT THE FUCK IS THIS CODE WHAT THE FUCK AM I DOING, IM SO SCARED, IM SO FUCKING SCARED.
     var dest = `./cache/html/`+md5(filePath);
 
     var datediff = date-now;
     datediff = Math.abs(datediff);
+    res.set('Content-Type', "text/html");
 
     if(fs.existsSync(dest) && !(datediff <= 86400000) ) {
     const cdat = await fs.promises.readFile(dest);

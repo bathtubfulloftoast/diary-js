@@ -71,10 +71,17 @@ const currentlist = flist.slice(min,max);
 currentlist.forEach(myFunction);
 
 function myFunction(item, index) {
+  const link = baseURL+`api/file?date=${date}&dir=${encodeURIComponent(dir)}&file=${encodeURIComponent(item.file)}`.replace(/\/+/g, "/");
     const text = document.createElement("a");
     text.innerHTML = item.file+"<br>";
-    text.href=baseURL+`api/file?date=${date}&dir=${encodeURIComponent(dir)}&file=${encodeURIComponent(item.file)}&convert=false`.replace(/\/+/g, "/");
+    text.href=link;
 
+    const directlink = document.createElement("a");
+    directlink.innerHTML = "[D] ";
+    directlink.title = "direct link";
+    directlink.href=link+"&convert=false";
+
+    wrap.appendChild(directlink);
     wrap.appendChild(text);
 }
 
