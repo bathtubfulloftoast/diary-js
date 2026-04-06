@@ -17,7 +17,7 @@ if (resize.scaling == 1) {
 scale = scale+":flags=neighbor";
 }
 
-const cmd = `ffmpeg -hide_banner -loglevel error -y -i "${input}" -vf "scale=${scale}" -loop 0 -pix_fmt yuva420p -qscale 75 -f webp "${outfile}"`;
+const cmd = `ffmpeg -hide_banner -loglevel error -y -i "${input}" -vf "scale=${scale}" -loop 0 -pix_fmt yuva420p -qscale 60 -f webp "${outfile}"`;
 
 await execSync(cmd);
 console.log(`[FFMPEG] ${cmd}`);

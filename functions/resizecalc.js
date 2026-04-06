@@ -3,7 +3,7 @@ let scaling = 0;
 // 0, normal scaling
 // 1, nearest
 
-if ( (srcWidth < min)||(srcHeight < min) ) {
+if ( (srcWidth < min)&&(srcHeight < min) ) {
 max = min;// it works though i think so, fuck you !!
 scaling = 1;
 } else if( !((srcWidth > max) || (srcHeight > max)) ) {// ok
@@ -13,6 +13,7 @@ height: Math.round(srcHeight)||1,
 scaling
 };
 };
+
 
 const ratio = Math.min(max / srcWidth, max / srcHeight);
 
