@@ -12,11 +12,12 @@ im too lazy to setup a proper mirror between the two so git.gay is the only plac
 
 # Getting Started
 
-* ``git clone https://git.gay/bathtubfulloftoast/diary.git``
-* ``pnpm install``
-* ``cp .env.example .env``
-* ``pnpm run build``
-* ``node server.js``
+1. install FFMPEG
+1. ``git clone https://git.gay/bathtubfulloftoast/diary.git``
+1. ``pnpm install``
+1. ``cp .env.example .env``
+1. ``pnpm run build``
+1. ``node server.js``
 
 # Config Options
 
@@ -89,8 +90,6 @@ false is the only option.
 ## thumbnail=true
 by setting ``?thumbnail=true`` a thumbnail will be generated for a video
 
-this thumbnail is the first frame of the video and a full quality frame will be temporarily put in your temp directory,, only temporarily.
-
 true is the only option
 
 # ToDo
@@ -115,4 +114,5 @@ true is the only option
 * [X] sort folders first
 * [X] create top icons with JS instead of being baked into the HTML (i did it terribly)
 * [ ] allow copyparty to be used for viewing files
-* [ ] rewrite thumbnailer to use FFMPEG instead of sharp
+* [X] rewrite thumbnailer to use FFMPEG instead of sharp
+* [ ] auto detect ffmpeg install ``/bin/ffmpeg`` ``ffmpeg`` ``ffmpeg.exe`` etc etc

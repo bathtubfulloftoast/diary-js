@@ -18,7 +18,11 @@ var nocapes = osrc.split('?')[0];
 
 const parse = path.parse(nocapes);
 
-let params = osrc.split("?").pop();
+let params = "";
+if (osrc.includes("?")) {
+params = osrc.split("?").pop();
+}
+
 params = new URLSearchParams(params);
 // params = params;
 params.set("date",`${month}/${day}/${year}`)

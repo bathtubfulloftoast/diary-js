@@ -2,6 +2,7 @@ import fs from 'fs';
 import mime from 'mime-types';
 import htmlhandler from './converters/html.js';
 import imageconverter from './converters/image.js';
+import FFimageconverter from './converters/FFImage.js';
 import videothumbs from './converters/thumbnailgen.js';
 import md5 from 'md5';
 import 'dotenv/config';
@@ -89,16 +90,20 @@ switch (filext) {
   case "gif":
   case "avif":
   case "tiff":
+  case "bmp":
+  case "dng":
+  case "ico":
     makedir("ithumbs"); // only thumbnails for now
     var dest = `./cache/ithumbs/`+md5(filePath);
-    if(fs.existsSync(dest)) {
-    const cdat = await fs.promises.readFile(dest);
+
     res.set('Content-Type', "image/webp");
-    return res.status(200).send(cdat);
+    if(fs.existsSync(dest)) {
+      const cdat = await fs.promises.readFile(dest);
+      return res.status(200).send(cdat);
     } else {
-    var image = await imageconverter({data:data,width:1000,height:1000,res:res});
-    await fs.promises.writeFile(dest, image);
-    return res.status(200).send(image);
+      var image = await FFimageconverter({max:1000,min:256,outfile:dest,input:filePath});
+      const cdat = await fs.promises.readFile(image);
+      return res.status(200).send(cdat);
     }
     break;
   case "mp4":
@@ -109,20 +114,14 @@ switch (filext) {
     makedir("vthumbs");
     var dest = `./cache/vthumbs/`+md5(filePath);
 
+    res.set('Content-Type', "image/webp");
     if(fs.existsSync(dest)) {
       const cdat = await fs.promises.readFile(dest);
-      res.set('Content-Type', "image/webp");
       return res.status(200).send(cdat);
     } else {
-      const thumbnail = await videothumbs(filePath);
-      if(thumbnail.error) {
-      return res.status(404).json(thumbnail);
-      } else {
-      const thumbdat = await fs.promises.readFile(thumbnail.file);
-      var image = await imageconverter({data:thumbdat,width:1280,height:720,res:res});
-      await fs.promises.writeFile(dest, image);
-      return res.status(200).send(image);
-      }
+      var image = await videothumbs({max:1280,min:256,outfile:dest,input:filePath});;
+      const cdat = await fs.promises.readFile(image);
+      return res.status(200).send(cdat);
     }
     } else {
     res.status(200).send(data);
