@@ -104,7 +104,7 @@ switch (filext) {
       const cdat = await fs.promises.readFile(dest);
       return res.status(200).send(cdat);
     } else {
-      var image = await FFimageconverter({max:1000,min:256,outfile:dest,input:filePath});
+      var image = await FFimageconverter({max:1000,min:16,outfile:dest,input:filePath});
       const cdat = await fs.promises.readFile(image);
       return res.status(200).send(cdat);
     }
