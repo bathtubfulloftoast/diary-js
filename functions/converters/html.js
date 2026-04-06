@@ -39,8 +39,29 @@ element.attr(type, nsrc);
 const $ = cheerio.load(data);
 
 $("video").each(function() {
+
+
+
+const sources = $(this).find("source");
+
+var vsrc;
+if(sources) {
+for (var source of sources) {
+if (source.attribs.src) {
+vsrc = source.attribs.src;
+break;
+}
+}
+}
+
 var osrc=$(this).attr("poster");
-const vsrc = $(this).attr("src");
+if($(this).attr("src")) {
+vsrc = $(this).attr("src");
+};
+
+if(!vsrc) {
+return;
+}
 
 if (osrc && !(/^(http|https):\/\//g.test(osrc)) ) {
 const parse = path.parse(osrc);

@@ -79,6 +79,7 @@ switch (filext) {
     return res.status(200).send(cdat);
     } else {
     var html = htmlhandler(data,date,dir);
+
     await fs.promises.writeFile(dest, html);
     return res.status(200).send(html);
     }
