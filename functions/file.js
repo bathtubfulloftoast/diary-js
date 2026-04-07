@@ -1,7 +1,7 @@
 import fs from 'fs';
 import mime from 'mime-types';
 import htmlhandler from './converters/html.js';
-import imageconverter from './converters/image.js';
+import FFaudioconverter from './converters/FFaudio.js';
 import FFimageconverter from './converters/FFImage.js';
 import videothumbs from './converters/thumbnailgen.js';
 import musicthumbs from './converters/albumcovers.js';
@@ -79,7 +79,10 @@ switch (filext) {
     datediff = Math.abs(datediff);
     res.set('Content-Type', "text/html");
 
-    if(fs.existsSync(dest) && !(datediff <= 86400000) ) {
+    if (datediff <= 86400000) {
+    var html = htmlhandler(data,date,dir);
+    return res.status(200).send(html);
+    } else if(fs.existsSync(dest) ) {
     const cdat = await fs.promises.readFile(dest);
     return res.status(200).send(cdat);
     } else {
@@ -161,7 +164,18 @@ switch (filext) {
         return res.status(200).send(cdat);
       }
     } else {
-      res.status(200).send(data);
+      makedir("audio");
+      var dest = `./cache/audio/`+md5(filePath);
+
+      res.set('Content-Type', "audio/opus");
+      if(fs.existsSync(dest)) {
+        const cdat = await fs.promises.readFile(dest);
+        return res.status(200).send(cdat);
+      } else {
+        var audio = await FFaudioconverter({outfile:dest,input:filePath});
+        const cdat = await fs.promises.readFile(audio);
+        return res.status(200).send(cdat);
+      }
     }
     break;
   default:

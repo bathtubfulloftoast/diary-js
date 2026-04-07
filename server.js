@@ -44,4 +44,4 @@ res.status(404).sendFile('dist/client/404.html', { root: '.' });
 });
 
 app.listen(port);
-console.log(`started server at http://localhost:${port}`);
+console.log(`[Server] started server at http://localhost:${port}`);
