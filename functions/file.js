@@ -4,6 +4,7 @@ import htmlhandler from './converters/html.js';
 import imageconverter from './converters/image.js';
 import FFimageconverter from './converters/FFImage.js';
 import videothumbs from './converters/thumbnailgen.js';
+import musicthumbs from './converters/albumcovers.js';
 import md5 from 'md5';
 import 'dotenv/config';
 import {makedir} from './caching.js';
@@ -64,6 +65,8 @@ if(convopt == "false") {
 return res.status(200).send(data);
 }
 
+const thumbgen = req.query.thumbnail;
+
 
 switch (filext) {
   case "html":
@@ -94,7 +97,6 @@ switch (filext) {
   case "avif":
   case "tiff":
   case "bmp":
-  case "dng":
   case "ico":
     makedir("ithumbs"); // only thumbnails for now
     var dest = `./cache/ithumbs/`+md5(filePath);
@@ -112,7 +114,9 @@ switch (filext) {
   case "mp4":
   case "webm":
   case "mov":
-    const thumbgen = req.query.thumbnail;
+  case "avi":
+  case "wmv":
+  case "mkv":
     if (thumbgen == "true") {
     makedir("vthumbs");
     var dest = `./cache/vthumbs/`+md5(filePath);
@@ -122,12 +126,42 @@ switch (filext) {
       const cdat = await fs.promises.readFile(dest);
       return res.status(200).send(cdat);
     } else {
-      var image = await videothumbs({max:1280,min:256,outfile:dest,input:filePath});;
-      const cdat = await fs.promises.readFile(image);
+      var image = await videothumbs({max:1280,min:256,outfile:dest,input:filePath});
+      if(image.error) {
+      return res.status(400).json(image);
+      }
+      const cdat = await fs.promises.readFile(image.file);
       return res.status(200).send(cdat);
     }
     } else {
     res.status(200).send(data);
+    }
+    break;
+  case "mp3":
+  case "ogg":
+  case "flac":
+  case "wav":
+  case "opus":
+  case "m4a":
+    if (thumbgen == "true") {
+      makedir("mcover");
+      var dest = `./cache/mcover/`+md5(filePath);
+
+      res.set('Content-Type', "image/webp");
+      if(fs.existsSync(dest)) {
+        const cdat = await fs.promises.readFile(dest);
+        return res.status(200).send(cdat);
+      } else {
+        var image = await musicthumbs({max:1000,min:256,outfile:dest,input:filePath});
+        if(image.error) {
+          res.set('Content-Type', "application/JSON");
+          return res.status(400).json(image);
+        }
+        const cdat = await fs.promises.readFile(image.file);
+        return res.status(200).send(cdat);
+      }
+    } else {
+      res.status(200).send(data);
     }
     break;
   default:

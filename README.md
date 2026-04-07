@@ -92,6 +92,10 @@ by setting ``?thumbnail=true`` a thumbnail will be generated for a video
 
 true is the only option
 
+**Cool Trick!**
+
+by putting an audio file (with embedded coverart) into a video tag itl use the coverart as the "video"
+
 # ToDo
 
 * [ ] Theme Selector (only colors)
