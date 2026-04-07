@@ -13,7 +13,7 @@ var year = date.getFullYear();
 function srconv(element,type) {
 var osrc=element.attr(type);
 
-if(osrc && !(/^(http|https):\/\//g.test(osrc))) {
+if(osrc && !(/^(http|https):\/\//g.test(osrc) || /^#/g.test(osrc))) {
 var nocapes = osrc.split('?')[0];
 
 const parse = path.parse(nocapes);
