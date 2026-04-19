@@ -146,6 +146,8 @@ switch (filext) {
   case "wav":
   case "opus":
   case "m4a":
+  case "bcstm":
+  case "amr":
     if (thumbgen == "true") {
       makedir("mcover");
       var dest = `./cache/mcover/`+md5(filePath);
