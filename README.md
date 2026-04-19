@@ -4,11 +4,11 @@ This is version 3 of **Novas Diary** this is currently HEAVY development as ive 
 
 # Contributing
 
-if youre on github and you wish to contribute please direct yourself toward the [git.gay](https://git.gay/bathtubfulloftoast/diary) repository.
+if youre any site and you wish to contribute you have to go through [my forgejo instance](https://git.novassite.net), unless you can help me properly mirror both push and pull requests.
 
-this is the primary host where i actually push my commits to.
+this is because i primarily use my own instance so i can develop shit whenever i want regaurdless of any possible wifi outage or anything.
 
-im too lazy to setup a proper mirror between the two so git.gay is the only place any changes can be made to.
+also nobody looks at what i do so i dont care to be fairly honest
 
 # Getting Started
 
