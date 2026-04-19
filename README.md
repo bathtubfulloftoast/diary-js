@@ -4,7 +4,7 @@ This is version 3 of **Novas Diary** this is currently HEAVY development as ive 
 
 # Contributing
 
-if youre any site and you wish to contribute you have to go through [my forgejo instance](https://git.novassite.net), unless you can help me properly mirror both push and pull requests.
+if youre any site and you wish to contribute you have to go through [my forgejo instance](https://git.novassite.net/bathtubfulloftoast/diary), unless you can help me properly mirror both push and pull requests.
 
 this is because i primarily use my own instance so i can develop shit whenever i want regaurdless of any possible wifi outage or anything.
 
