@@ -36,7 +36,7 @@ var scale = `${resize.width}:${resize.height}`;
 const middle = Math.round(duration/2);
 
 // i know the -ss -t is redundant, i just want to ENSURE, it doesnt encode more than it needs to.
-const cmd = `ffmpeg -hide_banner -loglevel error -y -ss ${middle} -t ${middle+1} -i "${input}" -vf "scale=${scale}" -frames:v 1 -q:v 2 -qscale 90 -f webp "${outfile}"`;
+const cmd = `ffmpeg -hide_banner -loglevel error -y -ss ${middle} -to ${middle+1} -i "${input}" -vf "scale=${scale}" -frames:v 1 -q:v 2 -qscale 90 -f webp "${outfile}"`;
 
 await execSync(cmd);
 console.log(`[FFMPEG] ${cmd}`);
