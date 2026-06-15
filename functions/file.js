@@ -101,6 +101,7 @@ switch (filext) {
   case "tiff":
   case "bmp":
   case "ico":
+  case "heic":
     makedir("ithumbs"); // only thumbnails for now
     var dest = `./cache/ithumbs/`+md5(filePath);
 
