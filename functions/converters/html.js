@@ -77,6 +77,15 @@ srconv($(this),"src");
 srconv($(this),"href");
 });
 
+
+$("audio").each(function() {
+
+if($(this).attr("src")) {
+$(this).attr("src", $(this).attr("src")+"&audio=true");
+}
+
+});
+
 function isComment(index, node) {
 return node.type === 'comment'
 }

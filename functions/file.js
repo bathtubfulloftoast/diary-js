@@ -120,6 +120,23 @@ switch (filext) {
   case "avi":
   case "wmv":
   case "mkv":
+
+    if (req.query.audio == "true") {
+      makedir("audio");
+      var dest = `./cache/audio/`+md5(filePath);
+
+      res.set('Content-Type', "audio/opus");
+      if(fs.existsSync(dest)) {
+        const cdat = await fs.promises.readFile(dest);
+        return res.status(200).send(cdat);
+      } else {
+        var audio = await FFaudioconverter({outfile:dest,input:filePath});
+        const cdat = await fs.promises.readFile(audio);
+        return res.status(200).send(cdat);
+      }
+    }
+
+
     if (thumbgen == "true") {
     makedir("vthumbs");
     var dest = `./cache/vthumbs/`+md5(filePath);
